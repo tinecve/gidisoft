@@ -2,6 +2,7 @@ package co.edu.ufps.gidisoft.controller;
 
 import co.edu.ufps.gidisoft.entities.Investigador;
 import co.edu.ufps.gidisoft.services.InvestigadorService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,28 +20,28 @@ public class InvestigadorController {
 
     @PostMapping
     public ResponseEntity<Investigador> guardarInvestigador(@RequestBody Investigador investigador){
-        return ResponseEntity.ok(this.service.guardarInvestigador(investigador));
+        return new ResponseEntity<>(this.service.guardarInvestigador(investigador), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Investigador> buscarInvestigador(@RequestParam Long id){
-        return ResponseEntity.ok(this.service.buscarInvestigador(id));
+        return new ResponseEntity<>(this.service.buscarInvestigador(id), HttpStatus.FOUND);
     }
 
     @GetMapping
     public ResponseEntity<List<Investigador>> listarInvestigadores(){
-        return ResponseEntity.ok(this.service.listarInvestigadores());
+        return new ResponseEntity<>(this.service.listarInvestigadores(), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Investigador> actualizarInvestigador(@RequestBody Investigador investigador,@RequestParam Long id){
-        return ResponseEntity.ok(this.service.actualizarInvestigador(investigador, id));
+        return new ResponseEntity<>(this.service.actualizarInvestigador(investigador, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> eliminarInvestigador(@RequestParam Long id){
         this.service.eliminarInvestigador(id);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
