@@ -1,5 +1,6 @@
 package co.edu.ufps.gidisoft.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class ClasificacionInvestigador {
     private String descripcion;
 
     @OneToMany(targetEntity = Investigador.class, fetch = FetchType.LAZY, mappedBy = "clasificacion")
+    @JsonBackReference
     private List<Investigador> investigadores;
 
 }

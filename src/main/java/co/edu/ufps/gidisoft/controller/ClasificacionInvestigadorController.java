@@ -24,7 +24,7 @@ public class ClasificacionInvestigadorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClasificacionInvestigador> buscarClasificacionInvestigador(@RequestParam Long id){
+    public ResponseEntity<ClasificacionInvestigador> buscarClasificacionInvestigador(@PathVariable Long id){
         return new ResponseEntity<>(this.service.buscarClasificacionInvestigador(id), HttpStatus.FOUND);
     }
 
@@ -34,12 +34,12 @@ public class ClasificacionInvestigadorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClasificacionInvestigador> actualizarClasificacionInvestigador(@RequestBody ClasificacionInvestigador clasificacionInvestigador, @RequestParam Long id){
+    public ResponseEntity<ClasificacionInvestigador> actualizarClasificacionInvestigador(@RequestBody ClasificacionInvestigador clasificacionInvestigador, @PathVariable Long id){
         return new ResponseEntity<>(this.service.actualizarClasificacionInvestigador(clasificacionInvestigador, id), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> eliminarClasificacionInvestigador(@RequestParam Long id){
+    public ResponseEntity<Object> eliminarClasificacionInvestigador(@PathVariable Long id){
         this.service.eliminarClasificacionInvestigador(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
